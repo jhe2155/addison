@@ -32,3 +32,6 @@ for i, (t, ptr) in enumerate(zip(T,ptrs)):
        
 print(clusters)
 
+
+
+
