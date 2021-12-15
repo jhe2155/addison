@@ -4,6 +4,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 
+plt.rcParams['pdf.fonttype'] = 42
+plt.rcParams['ps.fonttype'] = 42
+
 def obtain_cluster(ptrs):
        kmeans = sklearn.cluster.KMeans(n_clusters=6, random_state=0).fit(ptrs)
        return kmeans.cluster_centers_
@@ -44,7 +47,7 @@ ax = fig.add_subplot()
 ax.scatter(-330,-330)
 ax.scatter(330,330)
 
-for dim in clusters[6]:
+for dim in clusters[0]:
        h = dim[0]
        w = dim[1]
        print(w,h)
@@ -62,8 +65,7 @@ ax.add_patch(rect)
 #               #ax.add_patch(rect)
 #               ax.scatter(dim[1], dim[0], t, c=[[0,0,t/len(clusters)]])
 
-ax.set_xlabel('X Label')
-ax.set_ylabel('Y Label')
+plt.axis('off')
 #ax.set_zlabel('Z Label')
-fig.savefig("clusterthick7.svg")
+fig.savefig("cluster1.pdf", transparent=True, bbox_inches=0)
 plt.show()
