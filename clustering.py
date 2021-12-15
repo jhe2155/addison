@@ -67,5 +67,5 @@ ax.add_patch(rect)
 
 plt.axis('off')
 #ax.set_zlabel('Z Label')
-fig.savefig("cluster1.pdf", transparent=True, bbox_inches=0)
+fig.savefig("cluster1.svg", transparent=True, bbox_inches=0)
 plt.show()
