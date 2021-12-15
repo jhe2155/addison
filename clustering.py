@@ -1,9 +1,11 @@
 import sklearn.cluster
 import pandas as pd 
 import numpy as np 
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 
 def obtain_cluster(ptrs):
-       kmeans = sklearn.cluster.KMeans(n_clusters=2, random_state=0).fit(ptrs)
+       kmeans = sklearn.cluster.KMeans(n_clusters=6, random_state=0).fit(ptrs)
        return kmeans.cluster_centers_
 
 df = pd.read_csv("convert_height_width_depth.csv")
@@ -35,4 +37,36 @@ print(clusters)
 
 
 
+fig = plt.figure()
+ax = fig.add_subplot()
+#ax = fig.add_subplot(projection='3d')
 
+ax.scatter(-50,-50)
+ax.scatter(50,50)
+for dim in clusters[0]:
+       h = dim[0]
+       w = dim[1]
+       print(w,h)
+       rect = plt.Rectangle((-w/2, -h/2), w, h, linewidth=1, edgecolor='r', facecolor='none')
+       ax.add_patch(rect)
+
+for dim in clusters[1]:
+       h = dim[0]
+       w = dim[1]
+       print(w,h)
+       rect = plt.Rectangle((-w/2, -h/2), w, h, linewidth=1, edgecolor='b', facecolor='none')
+       ax.add_patch(rect)
+
+# for t, dims in enumerate(clusters):
+#        for dim in dims:
+#               h = dim[0]
+#               w = dim[1]
+#               #rect = patches.Rectangle((-w/2, -h/2), w, h, linewidth=1, edgecolor='r', facecolor='none')
+#               #ax.add_patch(rect)
+#               ax.scatter(dim[1], dim[0], t, c=[[0,0,t/len(clusters)]])
+
+ax.set_xlabel('X Label')
+ax.set_ylabel('Y Label')
+#ax.set_zlabel('Z Label')
+
+plt.show()
