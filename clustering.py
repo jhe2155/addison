@@ -41,21 +41,18 @@ fig = plt.figure()
 ax = fig.add_subplot()
 #ax = fig.add_subplot(projection='3d')
 
-ax.scatter(-50,-50)
-ax.scatter(50,50)
-for dim in clusters[0]:
+ax.scatter(-330,-330)
+ax.scatter(330,330)
+
+for dim in clusters[6]:
        h = dim[0]
        w = dim[1]
        print(w,h)
-       rect = plt.Rectangle((-w/2, -h/2), w, h, linewidth=1, edgecolor='r', facecolor='none')
+       rect = plt.Rectangle((-w/2, -h/2), w, h, linewidth=0.001, edgecolor='r', facecolor='none')
        ax.add_patch(rect)
 
-for dim in clusters[1]:
-       h = dim[0]
-       w = dim[1]
-       print(w,h)
-       rect = plt.Rectangle((-w/2, -h/2), w, h, linewidth=1, edgecolor='b', facecolor='none')
-       ax.add_patch(rect)
+rect = plt.Rectangle((-320, -180), 640, 360, linewidth=0.001, edgecolor='r', facecolor='none')
+ax.add_patch(rect)
 
 # for t, dims in enumerate(clusters):
 #        for dim in dims:
@@ -68,5 +65,5 @@ for dim in clusters[1]:
 ax.set_xlabel('X Label')
 ax.set_ylabel('Y Label')
 #ax.set_zlabel('Z Label')
-
+fig.savefig("clusterthick7.svg")
 plt.show()
