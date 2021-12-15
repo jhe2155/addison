@@ -1,9 +1,9 @@
-import sklearn
+import sklearn.cluster
 import pandas as pd 
 import numpy as np 
 
 def obtain_cluster(ptrs):
-       kmeans = sklearn.KMeans(n_clusters=2, random_state=0).fit(ptrs)
+       kmeans = sklearn.cluster.KMeans(n_clusters=2, random_state=0).fit(ptrs)
        return kmeans.cluster_centers_
 
 df = pd.read_csv("convert_height_width_depth.csv")
@@ -24,6 +24,7 @@ prev = 0
 prevl = 0
 clusters = []
 for i, (t, ptr) in enumerate(zip(T,ptrs)):
+       if t < init : continue
        cur = (t - init)//interv
        if cur != prev:
               clusters.append(obtain_cluster(ptrs[prevl : i]))
